@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-@objc public extension UIImageView
+public extension UIImageView
 {
     private func isPointInView()->Bool
     {
@@ -98,4 +98,29 @@ import UIKit
                 if touch.x >= frame.size.width - image.size.width && touch.y >= (frame.size.height / 2.0) - (image.size.height / 2.0) && touch.y <= (frame.size.height / 2.0) + (image.size.height / 2.0) {
                     return CGPoint(x: floor(touch.x - (frame.size.width - image.size.width)), y: floor(touch.y - (frame.size.height / 2.0) - (image.size.height / 2.0)))
                 }
-...
+            // This simply moves the image to the horizontal and vertical start
+            case .topLeft:
+                if touch.x <= image.size.width && touch.x <= image.size.height {
+                    // My favourite
+                    return CGPoint(x: floor(touch.x), y: floor(touch.y))
+                }
+            // This moves the image to the horizontal end and vertical start
+            case .topRight:
+                if touch.x >= frame.size.width - image.size.width && touch.y <= image.size.height {
+                    return CGPoint(x: floor(touch.x - (frame.size.width - image.size.width)), y: floor(touch.y))
+                }
+            // This moves the image to the horizontal start and vertical end
+            case .bottomLeft:
+                if touch.x <= image.size.width && touch.y <= frame.size.height - image.size.height {
+                    return CGPoint(x: floor(touch.x), y: floor(touch.y - (frame.size.height - image.size.height)))
+                }
+            // This moves the image to the horizontal and vertical end
+            case .bottomRight:
+                if touch.x <= frame.size.width - image.size.width && touch.y <= frame.size.height - image.size.height {
+                    return CGPoint(x: floor(touch.x - (frame.size.width - image.size.width)), y: floor(touch.y - (frame.size.height - image.size.height)))
+                }
+            }
+        }
+        return CGPoint(x: 0, y: 0 )
+    }
+}
