@@ -2,7 +2,6 @@
 //  UIImageViewExtension.swift
 //
 //  Created by Rufus on 19/09/2017.
-//  Copyright © 2017 Apple. All rights reserved.
 
 import Foundation
 import UIKit
@@ -17,7 +16,7 @@ public extension UIImageView
     func pixelPoint(fromViewPoint touch: CGPoint) -> CGPoint {
         
         if self.image == nil {
-        return CGPoint(x: 0, y: 0)
+            return CGPoint(x: 0, y: 0)
         }
         
         let image = self.image!
@@ -124,3 +123,4 @@ public extension UIImageView
         return CGPoint(x: 0, y: 0 )
     }
 }
+
